@@ -2,40 +2,169 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pages</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="logo.svg" type="image/svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project References | Team Hub</title>
+  <meta name="description"
+    content="Shared project references hub for your team. Browse project details, repository responsibilities, and documentation notes." />
+  <link rel="shortcut icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <header>
-        <h1>Projects</h1>
-        <p>Welcome to the official documentation page for all projects. Explore each project for details, technologies
-            used, and resources.</p>
+  <div class="shell">
+    <header class="hero" data-reveal>
+      <div class="topline">
+        <span class="title">Project References</span>
+          <a class="btn btn-sub" href="/projects/invio/index.html">Open Project Reference</a>
+      </div>
+      <h1>Shared documentation hub for the whole team</h1>
+      <p>
+        This main page is the central entry point for project references. Use it to
+        navigate active projects, understand repository responsibilities, and align on
+        implementation context before making changes.
+      </p>
+        <div class="chips">
+          <span class="chip chip-blue">Workspace: Team Docs Hub</span>
+          <span class="chip chip-green">Audience: Team Internal</span>
+          <span class="chip chip-orange">Scope: Multi-Project References</span>
+        </div>
     </header>
 
     <main>
+      <section class="section" data-reveal>
+        <h2>Active Projects</h2>
+        <p>Current project references available in this docs site.</p>
+        <div class="projects">
+          <article class="card">
+            <div class="card-head">
+              <h3>Invio</h3>
+              <span class="badge badge-active">Active</span>
+            </div>
+            <p>
+              Smart inventory platform with backend APIs, admin dashboard, and mobile
+              scan workflows.
+            </p>
+            <ul class="detail-list">
+              <li>Inventory ledger with IN / OUT / ADJUST stock records</li>
+              <li>Barcode-native product and store operations</li>
+              <li>Offline-first mobile batching and synchronization</li>
+            </ul>
+            <div class="actions">
+              <a class="btn btn-main" href="/projects/invio/index.html">View Reference</a>
+              <a class="btn btn-sub" href="/projects/invio/index.html#repo-map">
+                Repo Responsibilities
+              </a>
+            </div>
+          </article>
 
-        <section class="Project">
+          <article class="card card-upcoming">
+            <div class="card-head">
+              <h3>Next Project Slot</h3>
+              <span class="badge badge-soon">Coming Soon</span>
+            </div>
+            <p>
+              Reserve this slot for the next project. Keep structure consistent so every
+              project page remains easy to scan and maintain.
+            </p>
+            <ul class="detail-list">
+              <li>Start from `projects/_template/index.html`</li>
+              <li>Create a page under `projects/&lt;name&gt;/index.html`</li>
+              <li>Include scope, architecture, and workflow sections</li>
+              <li>Link the new page here after initial draft</li>
+            </ul>
+            <div class="actions">
+              <a class="btn btn-sub" href="/projects/_template/index.html">Open Template</a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        </section>
+      <section class="section split" data-reveal>
+        <article class="panel">
+          <h3>How To Use This Hub</h3>
+          <ul>
+            <li>
+              <span>Before coding:</span>
+              open the project reference page and confirm architecture assumptions.
+            </li>
+            <li>
+              <span>When changing behavior:</span>
+              update the related project details so backend/frontend/mobile stay aligned.
+            </li>
+            <li>
+              <span>When adding projects:</span>
+              duplicate the same documentation pattern for consistency.
+            </li>
+          </ul>
+        </article>
 
-        <!-- Add more projects here -->
-
-        <!-- Repeat the structure for additional projects -->
-
+        <article class="panel">
+          <h3>Repository Overview</h3>
+          <table class="repo-table">
+            <thead>
+              <tr>
+                <th>Repo</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>backend</td>
+                <td>Core inventory API and domain logic</td>
+              </tr>
+              <tr>
+                <td>frontend</td>
+                <td>Admin dashboard and management workflows</td>
+              </tr>
+              <tr>
+                <td>mobile</td>
+                <td>Store-floor scanning and offline event capture</td>
+              </tr>
+              <tr>
+                <td>pages</td>
+                <td>Team project references and documentation hub</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
     </main>
 
-    <footer>
-        <p>Feel free to reach out:
-            <a href="mailto:avireni.chandanchandu43657@gmail.com">avireni.chandanchandu43657@gmail.com</a>
-        </p>
-        <p>Connect with me on
-            <a href="https://github.com/AVIRENI-CHANDAN" target="_blank">GitHub</a>
-        </p>
+    <footer class="footer" data-reveal>
+      <span>
+        Team contact:
+        <a href="mailto:avireni.chandanchandu43657@gmail.com">
+          avireni.chandanchandu43657@gmail.com
+        </a>
+      </span>
+      <span>
+        GitHub:
+        <a href="https://github.com/AVIRENI-CHANDAN" target="_blank" rel="noreferrer">
+          AVIRENI-CHANDAN
+        </a>
+      </span>
     </footer>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll("[data-reveal]").forEach((el, index) => {
+      el.style.transitionDelay = `${index * 60}ms`;
+      observer.observe(el);
+    });
+  </script>
 </body>
 
 </html>
