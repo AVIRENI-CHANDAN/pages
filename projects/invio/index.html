@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invio Project Reference | Team Details</title>
+  <meta name="description"
+    content="Team reference page for the Invio project: scope, architecture, repositories, workflows, and implementation notes." />
+  <link rel="shortcut icon" href="../../logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../../index.html">Projects</a>
+        <span>/</span>
+        <span>Invio Reference</span>
+      </nav>
+      <div class="top-actions">
+        <a class="btn btn-sub" href="../../index.html">Back</a>
+        <a class="btn btn-main" href="#repo-map">Repo Map</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" data-reveal>
+        <h1>Invio Project Reference</h1>
+        <p>
+          Shared details page for the full Invio team. Use this as the project baseline
+          for architecture, scope, repository responsibilities, and current implementation
+          conventions.
+        </p>
+        <div class="chips">
+          <span class="chip chip-blue">Status: Active Build</span>
+          <span class="chip chip-green">Domain: Inventory Management</span>
+          <span class="chip chip-orange">Last Updated: February 26, 2026</span>
+        </div>
+      </section>
+
+      <section class="grid grid-two" data-reveal>
+        <article class="panel">
+          <h2>Project Snapshot</h2>
+          <ul class="list">
+            <li>
+              <div class="k">Purpose</div>
+              <p>
+                Build a reliable inventory platform for small and multi-store retailers.
+              </p>
+            </li>
+            <li>
+              <div class="k">Primary Users</div>
+              <p>Store operators, inventory managers, and admin teams.</p>
+            </li>
+            <li>
+              <div class="k">Core Capability</div>
+              <p>
+                Product/barcode catalog + immutable stock movement ledger + offline scan sync.
+              </p>
+            </li>
+            <li>
+              <div class="k">Design Principle</div>
+              <p>Fast operation on the floor, strict traceability in the backend.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Domain Entities</h2>
+          <ul class="list">
+            <li>
+              <div class="k">Product</div>
+              <p>SKU identity, barcode mappings, and category metadata.</p>
+            </li>
+            <li>
+              <div class="k">Store</div>
+              <p>Per-location inventory scope and threshold settings.</p>
+            </li>
+            <li>
+              <div class="k">Stock Movement</div>
+              <p>IN / OUT / ADJUST events as append-only records.</p>
+            </li>
+            <li>
+              <div class="k">Scan Event</div>
+              <p>Mobile-captured event batch for offline-first synchronization.</p>
+            </li>
+            <li>
+              <div class="k">User + Role</div>
+              <p>RBAC rules for product updates, stock edits, and reporting access.</p>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="repo-map" class="panel" data-reveal>
+        <h2>Repository Map</h2>
+        <table class="map-table">
+          <thead>
+            <tr>
+              <th>Repo</th>
+              <th>Responsibility</th>
+              <th>Key Focus</th>
+              <th>Run Command</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tag">backend</span></td>
+              <td>API and inventory domain logic</td>
+              <td>Product catalog, stock movements, RBAC, alerts, sync ingestion</td>
+              <td><code>uvicorn app.main:app --reload</code></td>
+            </tr>
+            <tr>
+              <td><span class="tag">frontend</span></td>
+              <td>Admin dashboard for management workflows</td>
+              <td>Products, stores/users, stock summary, reports, optional supplier module</td>
+              <td><code>(app-specific frontend command)</code></td>
+            </tr>
+            <tr>
+              <td><span class="tag">mobile</span></td>
+              <td>Store-floor scanning companion app</td>
+              <td>Fast barcode scan, stock actions, offline capture + background sync</td>
+              <td><code>(mobile project runner)</code></td>
+            </tr>
+            <tr>
+              <td><span class="tag">pages</span></td>
+              <td>Project references and documentation</td>
+              <td>Shared team docs, project overview, links and guidance</td>
+              <td><code>Static hosting</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="panel" data-reveal>
+        <h2>System Flow</h2>
+        <div class="flow">
+          <article class="step">
+            <strong>1</strong>
+            <h3>Capture</h3>
+            <p>Scan or enter stock actions from mobile/web interfaces.</p>
+          </article>
+          <article class="step">
+            <strong>2</strong>
+            <h3>Validate</h3>
+            <p>Apply RBAC, product/store checks, and movement rules.</p>
+          </article>
+          <article class="step">
+            <strong>3</strong>
+            <h3>Persist</h3>
+            <p>Write immutable movement records and audit-relevant metadata.</p>
+          </article>
+          <article class="step">
+            <strong>4</strong>
+            <h3>Sync + Alert</h3>
+            <p>Update views and emit low-stock signals for operations teams.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="grid grid-two" data-reveal>
+        <article class="panel">
+          <h2>Operational Notes</h2>
+          <ul class="list">
+            <li>
+              <div class="k">Data Integrity</div>
+              <p>Stock ledger should remain append-only to preserve audit history.</p>
+            </li>
+            <li>
+              <div class="k">Offline Behavior</div>
+              <p>
+                Mobile batching must be idempotent to avoid duplicated stock movements.
+              </p>
+            </li>
+            <li>
+              <div class="k">Security</div>
+              <p>RBAC required for stock adjustment, catalog edit, and user management.</p>
+            </li>
+            <li>
+              <div class="k">Observability</div>
+              <p>Keep health endpoint and structured logs available in all environments.</p>
+            </li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h2>Reference Commands</h2>
+          <h3>Backend API</h3>
+          <div class="code">uvicorn app.main:app --reload --host 0.0.0.0 --port 8000</div>
+          <h3 style="margin-top: 0.8rem">Suggested Team Convention</h3>
+          <div class="code">
+            branch: feature/&lt;module&gt;-&lt;short-desc&gt;
+            <br />
+            commits: feat|fix|docs(scope): message
+          </div>
+        </article>
+      </section>
+
+      <section class="panel" data-reveal>
+        <h2>Current Build Plan</h2>
+        <ul class="timeline">
+          <li>
+            <span class="phase">Phase 1</span>
+            <div>Stabilize core inventory APIs and movement ledger behavior.</div>
+          </li>
+          <li>
+            <span class="phase">Phase 2</span>
+            <div>Finalize dashboard flows for stock operations and user management.</div>
+          </li>
+          <li>
+            <span class="phase">Phase 3</span>
+            <div>Harden offline mobile sync and production-grade retry strategy.</div>
+          </li>
+          <li>
+            <span class="phase">Phase 4</span>
+            <div>Publish internal analytics and low-stock operational playbooks.</div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Invio team reference page for aligned implementation across backend, frontend,
+      mobile, and docs.
+    </footer>
+  </div>
+
+  <script>
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll("[data-reveal]").forEach((el, i) => {
+      el.style.transitionDelay = `${i * 60}ms`;
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+
+</html>
