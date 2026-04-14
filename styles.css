@@ -320,6 +320,17 @@ body {
     font-weight: 700;
 }
 
+.mail-contacts {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+
+    .mail:not(:last-child)::after {
+        content: ' / ';
+    }
+}
+
 [data-reveal] {
     opacity: 0;
     transform: translateY(14px);
