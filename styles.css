@@ -325,10 +325,10 @@ body {
     flex-direction: row;
     gap: 0.3rem;
     flex-wrap: wrap;
+}
 
-    .mail:not(:last-child)::after {
-        content: ' / ';
-    }
+.mail-contacts .mail:not(:last-child)::after {
+    content: ' / ';
 }
 
 [data-reveal] {
