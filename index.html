@@ -16,7 +16,7 @@
     <header class="hero" data-reveal>
       <div class="topline">
         <span class="title">Project References</span>
-        <a class="btn btn-sub" href="/projects/invio/index.html">Open Project Reference</a>
+        <a class="btn btn-sub" href="#active-projects">Browse Projects</a>
       </div>
       <h1>Shared documentation hub for the whole team</h1>
       <p>
@@ -32,7 +32,7 @@
     </header>
 
     <main>
-      <section class="section" data-reveal>
+      <section id="active-projects" class="section" data-reveal>
         <h2>Active Projects</h2>
         <p>Current project references available in this docs site.</p>
         <div class="projects">
@@ -53,6 +53,28 @@
             <div class="actions">
               <a class="btn btn-main" href="/projects/invio/index.html">View Reference</a>
               <a class="btn btn-sub" href="/projects/invio/index.html#repo-map">
+                Repo Responsibilities
+              </a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h3>Almonx</h3>
+              <span class="badge badge-active">Active</span>
+            </div>
+            <p>
+              Premium men's boutique e-commerce platform with full checkout,
+              order management, and admin dashboard.
+            </p>
+            <ul class="detail-list">
+              <li>Express 5 + Prisma + MySQL backend with PayPal checkout</li>
+              <li>Next.js 16 App Router storefront with Tailwind CSS</li>
+              <li>Transactional emails for every order lifecycle event</li>
+            </ul>
+            <div class="actions">
+              <a class="btn btn-main" href="/projects/almonx/index.html">View Reference</a>
+              <a class="btn btn-sub" href="/projects/almonx/index.html#repo-map">
                 Repo Responsibilities
               </a>
             </div>
@@ -110,16 +132,24 @@
             </thead>
             <tbody>
               <tr>
-                <td>backend</td>
+                <td>invio-backend</td>
                 <td>Core inventory API and domain logic</td>
               </tr>
               <tr>
-                <td>frontend</td>
+                <td>invio-frontend</td>
                 <td>Admin dashboard and management workflows</td>
               </tr>
               <tr>
-                <td>mobile</td>
+                <td>invio-mobile</td>
                 <td>Store-floor scanning and offline event capture</td>
+              </tr>
+              <tr>
+                <td>almonx-backend</td>
+                <td>Express 5 REST API, PayPal, order emails</td>
+              </tr>
+              <tr>
+                <td>almonx-frontend</td>
+                <td>Next.js 16 storefront and admin dashboard</td>
               </tr>
               <tr>
                 <td>pages</td>
